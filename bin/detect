@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Identifying git hash"
+exit 0

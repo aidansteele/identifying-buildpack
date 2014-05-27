@@ -1,0 +1,20 @@
+#!/bin/bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+cd $BUILD_DIR
+COMMIT_HASH=`git rev-parse --short HEAD`
+echo "$COMMIT_HASH" > app/version.txt
+
+mkdir -p "$BUILD_DIR/.profile.d"
+
+cat << EOF > "$BUILD_DIR/.profile.d/identify_build.sh"
+export COMMIT_HASH=${COMMIT_HASH}
+EOF
+
+exit 0
+
